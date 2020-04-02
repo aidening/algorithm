@@ -7,7 +7,7 @@
 function bubbleSort(testDataArr) {
   // 两层for循环
   for (let i = 1; i < testDataArr.length; i++) {
-    // 内层比较
+    // 内层比较(相邻元素大者靠后)
     for (let j = 0; j < testDataArr.length - i; j++) {
       if (testDataArr[j] > testDataArr[j + 1]) {
         [testDataArr[j], testDataArr[j + 1]] = [testDataArr[j + 1], testDataArr[j]];
