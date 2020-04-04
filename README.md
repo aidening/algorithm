@@ -208,6 +208,145 @@
     console.log(minimumLengthEncoding(["time", "me", "bell"]));
     console.log(minimumLengthEncoding(["time", "time", "time"]));
   ```
+
+- 反转字符串中的单词
+> 思路：
+>> 方法一：把字符串按照分割成数组，遍历每一项倒叙即可
+>>
+>> 方法二：
+>>     1、把字符串按照每个字符拆分成数组，整体 `reverse`，然后 `join` 合并单词
+>>     2、按照 `" "` 空格字符拆分为数组，然后 `reverse`, 然后 `join` 合并为字符串
+
+  ```
+  /**
+   * 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+   *
+   * 示例 1:
+   *
+   * 输入: "Let's take LeetCode contest"
+   * 输出: "s'teL ekat edoCteeL tsetnoc"
+   * 注意：在字符串中，每个单词由单个空格分隔，并且字符串中不会有任何额外的空格。
+   */
+
+  /**
+   * 方法一：把字符串按照分割成数组，遍历每一项倒叙即可
+   */
+
+  /**
+   * @param {string} s
+   * @return {string}
+   */
+  var reverseWords = function(s) {
+    let sArr = s.split(" ");
+    sArr.forEach((item, index) => {
+      sArr[index] = item
+        .split("")
+        .reverse()
+        .join("");
+    });
+
+    return sArr.join(" ");
+  };
+
+  /**
+   * 方法二：
+   *    1、把字符串按照每个字符拆分成数组，整体 `reverse`，然后 `join` 合并单词
+   *    2、按照 `" "` 空格字符拆分为数组，然后 `reverse`, 然后 `join` 合并为字符串
+   */
+
+  /**
+   * @param {string} s
+   * @return {string}
+   */
+  var reverseWords = function(s) {
+    let arr = s
+      .split("")
+      .reverse()
+      .join("");
+    return arr
+      .split(" ")
+      .reverse()
+      .join(" ");
+  };
+
+  console.log(reverseWords("Let's take LeetCode contest"));
+  ```
+
+- 反转字符串中的单词2
+> 思路：
+```
+  将字符串按字母拆分，转化为数组。
+  分情况讨论：
+  1、字符串长度 < k ，直接反转返回即可
+  2、遍历数组 for (let i = 0; i < sArr.length; )
+    a) i 以 2 * k 递增
+    b) 反转 [i, i + k) 的数据
+    c) 若剩余数据长度小于 k (sArr.length - i < k)，则直接反转
+    d) 若剩余数据长度大于 k ，小于 2k，则将 [k, sArr.length) 的数据拼接在 result 之后即可
+```
+
+  ```
+    /**
+     * 给定一个字符串和一个整数 k，你需要对从字符串开头算起的每个 2k 个字符的前k个字符进行反转。
+     * 如果剩余少于 k 个字符，则将剩余的所有全部反转。
+     * 如果有小于 2k 但大于或等于 k 个字符，则反转前 k 个字符，并将剩余的字符保持原样。
+     *
+     * 示例:
+     *
+     * 输入: s = "abcdefg", k = 2
+     * 输出: "bacdfeg"
+     * 要求:
+     *
+     * 该字符串只包含小写的英文字母。
+     * 给定字符串的长度和 k 在[1, 10000]范围内。
+     */
+
+    /**
+     * @param {string} s
+     * @param {number} k
+     * @return {string}
+     */
+    var reverseStr = function(s, k) {
+      let result = "";
+      if (s.length <= k) {
+        return s
+          .split("")
+          .reverse()
+          .join("");
+      } else {
+        let sArr = s.split("");
+        for (let i = 0; i < sArr.length; ) {
+          if (sArr.length - i < k) {
+            result += sArr
+              .slice(i, sArr.length)
+              .reverse()
+              .join("");
+          } else {
+            result += sArr
+              .slice(i, i + k)
+              .reverse()
+              .join("");
+            if (i + 2 * k > sArr.length) {
+              result += sArr.slice(i + k, sArr.length).join("");
+            } else {
+              result += sArr.slice(i + k, i + 2 * k).join("");
+            }
+          }
+          i += 2 * k;
+        }
+      }
+      return result;
+    };
+
+    console.log(
+      reverseStr(
+        "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl",
+        39
+      )
+    );
+
+  ```
+
 ## 说明
 
 + 部分算法题目来源：LeetCode（力扣）题库
