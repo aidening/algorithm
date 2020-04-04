@@ -110,6 +110,7 @@
   /**
    * 方法二：先找出公牛，并记录guess数据，利用obj计数
    */
+   
   /**
    * @param {string} secret
    * @param {string} guess
