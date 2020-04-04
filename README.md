@@ -208,3 +208,8 @@
     console.log(minimumLengthEncoding(["time", "me", "bell"]));
     console.log(minimumLengthEncoding(["time", "time", "time"]));
   ```
+## 说明
+
++ 部分算法题目来源：LeetCode（力扣）题库
++ 部分算法题目来源：牛客网
++ 部分算法题目来源：百度
